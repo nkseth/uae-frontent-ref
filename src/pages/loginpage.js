@@ -2,9 +2,13 @@ import React,{useState,useContext,useEffect} from 'react'
 import { withRouter } from 'react-router'
 import {magic} from '../utils/magic'
 import { AuthContext } from '../Auth'
+import { Button, Input } from '@mui/material'
+
 const LoginPage=({history})=>{
-    const {currentUser}=useContext(AuthContext)
+    const {currentUser,checkuser}=useContext(AuthContext)
+
   const [email,setemail]=useState("")
+
   useEffect(() => {
       console.log("thwaidiasd",currentUser)
       if(currentUser){
@@ -12,9 +16,12 @@ const LoginPage=({history})=>{
       }
       
   }, [currentUser])
+
     const onlogin= async()=>{
        try{
        await magic.auth.loginWithMagicLink({email})
+       checkuser()
+       history.push('/mainpage')
        }
        catch (err){
         console.log(err)
@@ -22,9 +29,9 @@ const LoginPage=({history})=>{
     }
     return(
         <div>
-            <input placeholder="Email" type="email" onChange={(e)=>{setemail(e.target.value)}}/>
-            <input placeholder="password" type="password"/>
-        <button onClick={onlogin}>SUbmit</button>
+            <Input placeholder="Email" type="email" onChange={(e)=>{setemail(e.target.value)}}/>
+          
+        <Button variant="contained" color="primary" onClick={onlogin}>SUbmit</Button>
         </div>
     )
 }

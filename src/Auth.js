@@ -14,11 +14,23 @@ const checkuser= async()=>{
            const userdata= await  magic.user.getMetadata()
            console.log(userdata)
             setCurrentUser(userdata)
-        }
+            const token= await gettoken()
+            console.log(token)
+        }else setCurrentUser(null)
     }
     catch(err){
         console.log(err)
     }
+    
+}
+
+const gettoken=async()=>{
+try{
+const token=await magic.user.getIdToken()
+return token
+} catch(err){
+
+}
 }
 useEffect(()=>{
     
@@ -29,7 +41,7 @@ useEffect(()=>{
 
 return(
     <AuthContext.Provider
-    value={{currentUser}}
+    value={{currentUser,checkuser}}
 >
     {children}
 </AuthContext.Provider>
