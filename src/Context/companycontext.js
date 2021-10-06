@@ -1,0 +1,91 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
+import React, { createContext, useReducer ,useEffect,useContext, useState} from 'react'
+import axiosInstance from '../axios'
+import { reducer, initialState } from './companyreducer'
+import { withRouter } from 'react-router'
+import { AuthContext } from '../Auth'
+import { UIContext } from './UIcontextapi'
+
+export const CompanyContext = createContext()
+
+
+ const CompanyContextProvider = ({ children,history }) => {
+     const {UIdispatch}=useContext(UIContext)
+    const {gettoken,currentUser,checkuser}=useContext(AuthContext)  
+    const [cartid]=useState(null)
+ 
+    const [cstate, cdispatch] =
+        useReducer(reducer, initialState)
+       
+        const callcompanytoken=async()=>{
+           
+            if(currentUser)
+            {  UIdispatch({type:'LOADING',payload:true})
+                 const  token= await gettoken()
+               
+                await axiosInstance.get('/companies',{
+                    headers:{
+                        'Authorization':`Bearer ${token}`
+                    }
+                }).then((res)=>{
+                    UIdispatch({type:'LOADING',payload:false})
+                    console.log("dispatch is for comapny done",res.data)
+                  
+                cdispatch({type:"ADDDATA",payload:res.data?res.data:[]})
+                }).catch((error)=>{
+                    UIdispatch({type:'LOADING',payload:false})
+                    UIdispatch({type:'SNACKBAR',payload:{type:'error',message:error.message,state:true}})
+                })
+            }
+            else 
+            cdispatch({type:"ADDDATA",payload:[]})
+        }
+
+
+
+const createcompany=async(newstate)=>{
+    console.log(cstate)
+    console.log("create")
+    UIdispatch({type:'LOADING',payload:true})
+    const token=await gettoken()
+    
+    await axiosInstance({
+     method:'POST',
+    url:'/companies',
+    headers:{
+           'Authorization':`Bearer ${token}`,
+           'Content-Type':"application/json"
+       },
+     data:JSON.stringify({...newstate})
+
+  
+       }  ).then((res)=>{
+        UIdispatch({type:'LOADING',payload:false})
+        cdispatch({type:"ADDITEM",payload:res.data})
+        history.push('/checkout')
+    console.log("thisjhsss",res)
+ 
+})
+.catch((error)=>{
+    UIdispatch({type:'LOADING',payload:false})
+                    UIdispatch({type:'SNACKBAR',payload:{type:'error',message:error.message,state:true}})
+    console.error(error)})
+}
+
+
+
+useEffect(() => {
+   
+  callcompanytoken()
+ 
+ }, [])
+
+        return (
+        <CompanyContext.Provider
+            value={{cstate, cdispatch,callcompanytoken,createcompany ,cartid}}>
+            {children}
+        </CompanyContext.Provider>
+    )
+}
+export default withRouter(CompanyContextProvider);

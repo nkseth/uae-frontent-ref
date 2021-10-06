@@ -1,19 +1,37 @@
-import React, { useContext } from 'react';
+import React, { useContext,useEffect } from 'react';
 import {Route , Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import {AuthContext } from './Auth';
-const PrivateRoute=({component:RouteComponent,...rest})=>{
-    const {currentUser}= useContext(AuthContext);
+const PrivateRoute=({component:RouteComponent,history,...rest})=>{
+    const {currentUser,checkuser}= useContext(AuthContext);
+    useEffect(() => {
+        if(currentUser===null){
+            const checkuseri=async()=>{
+                return await checkuser().then(
+                    (res)=>{
+                     if(!res){
+            
+                         history.push('/Login')
+                        }
+                    }
+                )
+             }
+             checkuseri()
+        }
+        
+     
+    }, [])
+
     return(
         <Route
     {...rest}
     render={routeProps=>
-        !!currentUser ? (
+    currentUser ? (
             <RouteComponent {...routeProps}/>
-        ) :(
-            <Redirect to={"/Login"}/>
-        )
+        ) :null
+      
     }
     />
     );
 };
-export default PrivateRoute
+export default withRouter(PrivateRoute)

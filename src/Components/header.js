@@ -1,47 +1,82 @@
-import React,{useContext, useEffect,useState} from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React,{useContext, useEffect} from 'react'
 import { createStyles, makeStyles } from '@mui/styles'
-import { Avatar, Box, Button } from '@mui/material'
+import {  Badge, Box, Button ,Typography} from '@mui/material'
 import logo from '../asserts/logo.png'
 import Popper from './popper'
 import { AuthContext } from '../Auth'
 import { withRouter } from 'react-router'
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import { CartContext } from '../Context/cartapi'
+import {UIContext} from '../Context/UIcontextapi'
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 const useStyles = makeStyles((theme) =>
   createStyles({
     root: {
       position:'sticky',
-      minHeight:'10vh',
-      
+      maxHeight:'10vh',
+      maxWidth:'98vw',
       display:'flex',
       alignItems:'center',
-      justifyContent:'space-between'
-      
+      justifyContent:'space-between',
+      background:'white',
+      zIndex:'100',
+      top:0,
+      left:0
     },
+    logo:{
+      maxWidth:'70%',
+      minWidth:'10vh',
+      [theme.breakpoints.up('md')]:{
+        maxWidth:'100%',
+        maxHeight:'10vh'
+      },
+      
+    }
   }),
 );
 const Header=({history})=>{
 const classes=useStyles()
-const {currentUser,checkuser}=useContext(AuthContext)
+const {currentUser}=useContext(AuthContext)
+ const {state}=useContext(CartContext)
+const {UIdispatch}=useContext(UIContext)
  
 
-useEffect(() => {
-   const  checking=async()=>{
-        await checkuser()
-      
-    }
-    checking()  
-}, [])
-console.log("thius is header",currentUser)
-    return(<Box px={4} className={classes.root}>
+
+
+    return(<Box  className={classes.root}>
        
-      <Box style={{width:'200px',height:'80%'}}>
-      <img src={logo} alt="logo" style={{width:'100%',height:'100%'}}/>
+      <Box style={{maxWidth:'100%',maxHeight:'10vh'}} onClick={()=>{history.push('/')}} >
+       <img src={logo} alt="logo" className={classes.logo}/> 
 
       </Box>
-      <Box  >
+      <Box >
           {currentUser?
-      <Popper  />
+      <Box style={{display:'flex',alignItems:'center',justifyContent:'center'}}>
+    
+      <Box style={{cursor:'pointer',display:'grid',placeItems:'center'}} mx={1} onClick={()=>{history.push('/cart')}} px={2}> 
+      <Badge badgeContent={state?.length} color="primary">
+       
+      <ShoppingCartIcon/>
+      </Badge>
+      
+      </Box>
+      <Popper user={currentUser.email}  />
+    
+
+      </Box>
     :
-    <Button onClick={()=>{history.push('/login')}}>Login/SignUp</Button>}
+    <Box>
+    <Button onClick={()=>{history.push('/login')}}>Login/SignUp</Button>
+    <Box style={{cursor:'pointer',display:'grid',placeItems:'center'}} mx={1} onClick={()=>{history.push('/cart')}}> 
+      <Badge badgeContent={state?.length} color="primary">
+       
+      <ShoppingBasketIcon/>
+      </Badge>
+      
+      </Box>
+    </Box>
+    }
       </Box>
     </Box>)  
 }

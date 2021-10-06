@@ -1,12 +1,13 @@
+/* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import './App.css';
 
 import {BrowserRouter} from 'react-router-dom'
 import {Route,Switch} from "react-router-dom"
 
-import {AuthProvider} from "./Auth"
+import AuthProvider from "./Auth"
 import PrivateRoute from "./provateroute"
-
+import Checkout from './pages/checkout'
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import LoginPage from './pages/loginpage';
 import SigninupPage from './pages/signuppage';
@@ -14,9 +15,19 @@ import MainPage from './pages/Main';
 import HomePage from './pages/homepage';
 import Pagenp from './pages/404';
 import { indigo,blue } from '@mui/material/colors';  
-const App =()=> {
+import CartPage from './pages/cart';
+import CartContextProvider from './Context/cartapi'
+import Orders from './pages/orders';
+import CompanyContextProvider from './Context/companycontext'
+import CreateCompany from './pages/createcompany';
+import UIContextProvider from './Context/UIcontextapi';
+import Loading from './Components/loading'
+import Snackbars from './Components/snackbar';
 
+const App =()=> {
+  const defaultTheme = createTheme();
   const theme = createTheme({
+    ...defaultTheme,
     palette: {
       type: "ligth",  
       primary: {
@@ -30,26 +41,42 @@ const App =()=> {
       fontFamily:'Nunito',
       fontSize: 14,    
     },
+    
   });
 return( 
-   <ThemeProvider theme={theme}>
- <AuthProvider>
+   <ThemeProvider theme={defaultTheme}>
+     {console.log(defaultTheme)}
+     <UIContextProvider>
+
   
  <BrowserRouter>
- <div>
-    
-     
+
+ <AuthProvider>
+  
+ <CartContextProvider>  
+   <CompanyContextProvider>
+     <Snackbars/>
 <Switch>
 <PrivateRoute path="/mainpage" exact component={MainPage}/>
+<Route path="/cart" exact component={CartPage}/>
+<PrivateRoute path="/Orders" exact component={Orders}/>
+<PrivateRoute path="/Checkout" exact component={Checkout}/>
+<PrivateRoute path="/CreateCompany" exact component={CreateCompany}/>
 <Route path="/Login" exact component={LoginPage}/>
 <Route path="/Signup" exact component={SigninupPage}/>
 <Route path="/" exact component={HomePage}/>
 <Route  component={Pagenp}/>
+
 </Switch>
-</div>
+</CompanyContextProvider>
+</CartContextProvider>
+</AuthProvider> 
+
+
 </BrowserRouter>
 
-</AuthProvider> 
+
+</UIContextProvider>
 </ThemeProvider> 
 )
 
