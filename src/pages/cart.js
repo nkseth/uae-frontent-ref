@@ -11,6 +11,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import AirportShuttleIcon from '@mui/icons-material/AirportShuttle';
 import { UIContext } from '../Context/UIcontextapi'
+import Breadcrumb from '../Components/breadcrum'
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -64,7 +65,11 @@ const CartPage=({history})=>{
         <Box  >
             <Header/>
             <Loader/>
-            <Container fluid >
+            <Box ml={3} mt={3}>
+            <Breadcrumb crum={[{label:"Home",url:"/"},{label:"Market Place",url:"/mainpage"},{label:"Your Cart",url:"/cart"}]}/>
+            </Box>
+            
+            <Container  fluid style={{padding:'20px',boxShadow:'0 0 10px gray',marginTop:'20px',maxWidth:'900px',}}>
             <Grid container  >
                 <Grid item container sm={12}
                 justifyContent='center' alignItems='center'

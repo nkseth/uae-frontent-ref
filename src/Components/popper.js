@@ -4,10 +4,13 @@ import Popover from '@mui/material/Popover';
 import { Magic } from 'magic-sdk';
 import { withRouter } from 'react-router';
 import { Avatar,Box, Button } from '@mui/material';
-
-import Link from '@mui/material/Link';
+import PersonIcon from '@mui/icons-material/Person';
+import {NavLink} from 'react-router-dom';
 import { deepOrange } from '@mui/material/colors';
-
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import BusinessIcon from '@mui/icons-material/Business';
+import CardMembershipIcon from '@mui/icons-material/CardMembership';
+import PaymentIcon from '@mui/icons-material/Payment';
 
  const BasicPopover=({history,location,user})=> {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -37,7 +40,11 @@ const Logoutclick= async()=>{
 }
 const linkstyle={
   display:'flex',
-  justifyConent:'center',
+  
+  alignItems:'center',
+marginTop:"5px",
+color:'black',
+textDecoration: 'none',
 
 }
  
@@ -58,29 +65,33 @@ const linkstyle={
           horizontal: 'left',
         }}
       >
-          <Box px={5} py={2} style={{display:'flex',flexDirection:'column',alignItem:"center"}}>
+          <Box px={5} py={2} style={{display:'flex',flexDirection:'column',justifyContent:'center'}}>
             <Box
            
             style={{color:'lightblue'}}
             >{user}</Box>
-         <Link 
+         <NavLink 
          style={linkstyle}
-         underline="hover" color="inherit" href="/Profile">
+          to="/Profile">
+              <PersonIcon/>
                Profile
-              </Link>
-              <Link  style={linkstyle} underline="hover" color="inherit" href="/Profile">
+              </NavLink>
+              <NavLink  style={linkstyle}  color="inherit" to="/orders">
+             <AssignmentIcon/>
                Orders
-              </Link>
-              <Link  style={linkstyle} underline="hover" color="inherit" href="/Profile">
-               Companies
-              </Link>
-              <Link  style={linkstyle} underline="hover" color="inherit" href="/Profile">
-               Subscription
-              </Link>
-              <Link underline="hover" color="inherit" href="/Profile">
-               Payment Method
-              </Link>
-              <Button   style={linkstyle} onClick={Logoutclick}>
+              </NavLink>
+              <NavLink  style={linkstyle}  color="inherit" to="/companies">
+             <BusinessIcon/>
+              Companies
+              </NavLink>
+              <NavLink  style={linkstyle} color="inherit" to="/subscriptions">
+              <CardMembershipIcon/>
+               Subscriptions
+              </NavLink>
+              <NavLink  style={linkstyle}  color="inherit" to="/paymentMethod">
+              <PaymentIcon/> Payment Method
+              </NavLink>
+              <Button   style={{marginTop:'10px'}} onClick={Logoutclick}>
                Logout
               </Button>
               </Box>

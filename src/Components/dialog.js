@@ -12,6 +12,12 @@ import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import {Box} from '@mui/material'
 import { CartContext } from '../Context/cartapi';
+import { withRouter } from 'react-router';
+import { AuthContext } from '../Auth';
+import { UIContext } from '../Context/UIcontextapi';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import AirportShuttleIcon from '@mui/icons-material/AirportShuttle';
+
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuDialogContent-root': {
     padding: theme.spacing(2),
@@ -53,6 +59,9 @@ BootstrapDialogTitle.propTypes = {
 const  CustomizedDialogs=(props) =>{
   const [open, setOpen] = React.useState(false);
 const [productalreadypresent,setproductalreadypresent]=React.useState(false)
+const {state,dispatch,cartid,updatecart,createcart}=React.useContext(CartContext)
+const {currentUser}=React.useContext(AuthContext)
+const {UIdispatch}=React.useContext(UIContext)
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -60,7 +69,7 @@ const [productalreadypresent,setproductalreadypresent]=React.useState(false)
       
     setOpen(false);
   };
-  const {dispatch,createcart,cartid,updatecart,state}=React.useContext(CartContext)
+  
   const onadditem=(item)=>{
     const newstate=[...state,item]
       dispatch({type:"ADDITEM",payload:item})
@@ -90,8 +99,7 @@ const [productalreadypresent,setproductalreadypresent]=React.useState(false)
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
-        maxWidth="md"
-        fullWidth
+     
       >
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
          {props.data.title}
@@ -99,26 +107,45 @@ const [productalreadypresent,setproductalreadypresent]=React.useState(false)
         <DialogContent dividers>
         <Box style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
         <img 
-                                            src={`${process.env.REACT_APP_ENDPOINT}${props.data?.cover?.formats?.medium?.url}`}
+                                            src={`${process.env.REACT_APP_ENDPOINT}${props.data?.cover?.formats?.thumbnail?.url}`}
                                             alt={props.data.title}
                                             style={{maxWidth:'50%'}}
                                             />
            <Typography style={{fontSize:'2rem',fontWeight:'bolder'}}>{`${props.data.currency} ${props.data.price}/User/Month`}</Typography>
-          <Typography gutterBottom>
+          <Box >
+          <Typography gutterBottom  >
            {props.data.information}
           </Typography>
+          </Box>
          </Box>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleClose}>
-           Proceed To Checkout
-          </Button>
-          <Button autoFocus onClick={()=>{onadditem(props.data)}} disabled={productalreadypresent}>
-           Add to Cart
-          </Button>
+        
+          <Button   variant="contained"
+             style={{textTransform:'capitalize',
+             background:'#28d9a'  ,margin:'10px'          
+             }}
+             onClick={()=>{onadditem(props.data)}}
+            disabled={productalreadypresent}
+            >
+                    <AddShoppingCartIcon/>
+                   Add to Cart
+                </Button>
+               <Button   variant="container"
+               onClick={()=>{
+                if(state.length>0)   
+                props.history.push("/Checkout")
+                else {
+                    UIdispatch({type:"SNACKBAR",payload:{type:"error",message:'Your Cart is Empty',status:true}})
+                }
+            }}
+               style={{background:"#28d9ad",
+               textTransform:'capitalize',color:'white' ,margin:'10px'}}
+               >
+                   <AirportShuttleIcon style={{marginRight:'3px'}}/> Proceed to checkout</Button>
         </DialogActions>
       </BootstrapDialog>
     </div>
   );
 }
-export default CustomizedDialogs
+export default withRouter(CustomizedDialogs)

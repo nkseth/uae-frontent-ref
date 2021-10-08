@@ -66,12 +66,12 @@ const {UIdispatch}=useContext(UIContext)
 
       </Box>
     :
-    <Box>
-    <Button onClick={()=>{history.push('/login')}}>Login/SignUp</Button>
+    <Box  style={{display:'flex',alignItems:'center',justifyContent:'center'}}>
+    <Button onClick={()=>{history.push('/login')}} color="primary" variant="contained">Login/SignUp</Button>
     <Box style={{cursor:'pointer',display:'grid',placeItems:'center'}} mx={1} onClick={()=>{history.push('/cart')}}> 
       <Badge badgeContent={state?.length} color="primary">
        
-      <ShoppingBasketIcon/>
+      <ShoppingCartIcon/>
       </Badge>
       
       </Box>

@@ -11,7 +11,7 @@ export const reducer = (state, action) => {
         case "SNACKBAR":
            return {...state,snackbar:action.payload}
            case "SNACKBARCLOSE":
-            return {...state,snackbar:{action.payload}}  
+            return {...state,snackbar:{...state.snackbar,...action.payload}}  
         default:
             return state
     }

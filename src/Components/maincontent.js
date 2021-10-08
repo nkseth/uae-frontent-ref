@@ -1,12 +1,53 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable array-callback-return */
-import { Typography,Box,TextField, FormGroup, FormControlLabel, Checkbox, Paper} from '@mui/material'
+import { Typography,Box,TextField, FormGroup, FormControlLabel, Checkbox, Paper,Input} from '@mui/material'
 import {UIContext} from '../Context/UIcontextapi'
 import React,{useContext, useEffect,useState} from 'react'
 import Breadcrumb from './breadcrum'
 import Loading from '../Components/loading'
 import axios from '../axios'
 import Dialog from './dialog'
+import { createStyles, makeStyles } from '@mui/styles'
+
+
+const useStyles = makeStyles((theme) =>
+  createStyles({
+    searchinput: {
+        border: "none",
+        width: '100%',
+        fontSize: '1rem',
+        "&:focus-visible": {
+            border: 'none',
+            outline: 'none'
+        },
+        "&::placeholder": {
+            color: 'gray',
+           
+        }
+    },
+    searchbox: {
+        background: 'white',
+        display: 'flex',
+       
+        alignItems: 'center',
+        justifyContent: 'enter',
+        padding: '10px 20px',
+        marginTop: '20px',
+        borderRadius: '20px',
+        border:'2px solid #1976d2',
+        width: '30%',
+        height: '5%',
+        minWidth: '300px'
+    },
+    searchimg: {
+        height: "10%",
+        width: '10%'
+    }
+
+   
+  }),
+);
+
 const MainPage=()=>{
 const [Plans,setplans]=useState([])
 const [filter,setfilter]=useState([])
@@ -15,6 +56,7 @@ const [titleop,settitles]=useState([])
 const [finalplan,setfinalplan]=useState([])
 const [searchq,setsearchq]=useState("")
 const {UIdispatch}=useContext(UIContext)
+const classes=useStyles()
     useEffect(() => {
      const callplan=async()=>{
             UIdispatch({type:'LOADING',payload:true})
@@ -29,7 +71,7 @@ const {UIdispatch}=useContext(UIContext)
             
             }).catch((err)=>{console.log(err)
                 UIdispatch({type:'LOADING',payload:false})
-                UIdispatch({type:'SNACKBAR',payload:{type:'error',message:err.message,state:true}})
+                UIdispatch({type:'SNACKBAR',payload:{type:'error',message:err?.response.data.message,status:true}})
             })
         }
     callplan()
@@ -136,15 +178,20 @@ const colors=['#83d17f','#ffc300','#2064d8','#d4afff']
             <Box  px={4} pt={1}> 
             <Typography variant="h1" style={{fontSize:'2.5rem',fontWeight:'bolder'}}>Market Place</Typography>
            <Breadcrumb crum={[{label:"Home",url:"/"},{label:"Market Place",url:"/main"}]}/>
-            <Box pt={1} style={{width:'100%',display:'flex',justifyContent:'center'}}>
-                <TextField placeholder="Search Plans/Addons" 
+            <Box style={{display:'flex',justifyContent:'center'}}>
+
+            
+            <Box className={classes.searchbox}>
+ 
+              
+                <input placeholder="Search Plans/Addons" 
                 fullWidth
+                className={classes.searchinput}
                 value={searchq}
-                style={{maxWidth:'500px',boxShadow:'0 0 5px lightblue',border:'none'}}
                 onChange={(e)=>{setsearchq(e.target.value)}}
                 />
             </Box>
-
+            </Box>
 
             <Box mt={2} mb={4} style={{width:'100%',display:'flex',justifyContent:'center'}}>
             <FormGroup style={{display:'flex',flexDirection:'row'}}>
@@ -163,7 +210,7 @@ const colors=['#83d17f','#ffc300','#2064d8','#d4afff']
                 titleop.map((item,index)=>{
                     return (
                     <Box key={index}>
-                        <Box px={2} py={4} style={{borderTop:index===0?"none":'2px solid lightgray'}}>
+                        <Box px={2}  style={{borderTop:index===0?"none":'2px solid lightgray'}}>
                         <Typography variant="h6" style={{textTransform:'capitalize',fontSize:'2rem',} } color="primary"> {item?.replace(0," ")}</Typography>
                         </Box>
                         <Box style={{display:'flex',flexWrap:'wrap',paddingBottom:'20px'}}>

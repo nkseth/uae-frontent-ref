@@ -13,6 +13,7 @@ import AirportShuttleIcon from '@mui/icons-material/AirportShuttle';
 import { Grid ,Box,Typography,  Container} from '@mui/material'
 import { withRouter } from 'react-router'
 import { createStyles, makeStyles } from '@mui/styles'
+import Breadcrumb from '../Components/breadcrum'
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -48,16 +49,20 @@ const {state}=useContext(CartContext)
                'Content-Type':"application/json"
            },
          data:JSON.stringify({cart:state,companyid:comp})
-    
-      
-           }  ).then((res)=>{
-        
-        console.log(res)
+        }).then((res)=>{
+
+        console.log('res',res.statusCode)
         UIdispatch({type:"LOADING",payload:false})
+           
     })
-    .catch((error)=>{console.error(error)
+    .catch((error)=>
+    {
+        
+        console.log("err",error.response)
+ 
+        UIdispatch({type:'SNACKBAR',payload:{type:'error',message:error.response.data.message,status:true}})
         UIdispatch({type:"LOADING",payload:false})
-        UIdispatch({type:'SNACKBAR',payload:{type:'error',message:error.message,state:true}})
+        
     })
     }
   
@@ -78,8 +83,10 @@ setcomp(e.target.value)
         <div>
             <Loder/>
             <Header/>
-        
-           <Container fluid >
+            <Box ml={3} mt={3}>
+            <Breadcrumb crum={[{label:"Home",url:"/"},{label:"Market Place",url:"/main"},{label:"Checkout",url:"/checkout"}]}/>
+         </Box>
+           <Container fluid style={{padding:'20px',boxShadow:'0 0 10px gray',marginTop:'20px',maxWidth:'900px',}}>
            
             <Grid container  >
                

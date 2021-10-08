@@ -23,6 +23,9 @@ import CreateCompany from './pages/createcompany';
 import UIContextProvider from './Context/UIcontextapi';
 import Loading from './Components/loading'
 import Snackbars from './Components/snackbar';
+import Profile from './pages/profile';
+import Subscription from './pages/subcriptions';
+import Companies from './pages/companies';
 
 const App =()=> {
   const defaultTheme = createTheme();
@@ -62,6 +65,9 @@ return(
 <PrivateRoute path="/Orders" exact component={Orders}/>
 <PrivateRoute path="/Checkout" exact component={Checkout}/>
 <PrivateRoute path="/CreateCompany" exact component={CreateCompany}/>
+<PrivateRoute path="/profile" exact component={Profile}/>
+<PrivateRoute path="/subscriptions" exact component={Subscription}/>
+<PrivateRoute path="/Companies" exact component={Companies}/>
 <Route path="/Login" exact component={LoginPage}/>
 <Route path="/Signup" exact component={SigninupPage}/>
 <Route path="/" exact component={HomePage}/>

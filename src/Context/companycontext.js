@@ -35,7 +35,7 @@ export const CompanyContext = createContext()
                 cdispatch({type:"ADDDATA",payload:res.data?res.data:[]})
                 }).catch((error)=>{
                     UIdispatch({type:'LOADING',payload:false})
-                    UIdispatch({type:'SNACKBAR',payload:{type:'error',message:error.message,state:true}})
+                    UIdispatch({type:'SNACKBAR',payload:{type:'error',message:error.response.data.message,status:true}})
                 })
             }
             else 
@@ -69,7 +69,7 @@ const createcompany=async(newstate)=>{
 })
 .catch((error)=>{
     UIdispatch({type:'LOADING',payload:false})
-                    UIdispatch({type:'SNACKBAR',payload:{type:'error',message:error.message,state:true}})
+                    UIdispatch({type:'SNACKBAR',payload:{type:'error',message:error.response.data.message,status:true}})
     console.error(error)})
 }
 
