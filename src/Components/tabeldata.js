@@ -57,11 +57,7 @@ export const orderHeadCells=[
       label: 'Order Number',
       doSorting:true,
     },
-    {
-      id: 'orderItem',
-      label: 'Order Item',
-      doSorting:false,
-    },
+   
     {
       id: 'orderDate',
       label: 'Order date',
