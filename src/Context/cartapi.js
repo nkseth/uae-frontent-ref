@@ -36,7 +36,7 @@ export const CartContext = createContext()
             })
      .catch((error)=>{console.log(error)
         UIdispatch({type:'LOADING',payload:false})
-        UIdispatch({type:'SNACKBAR',payload:{type:'error',message:error.response.data.message,status:true}})
+        UIdispatch({type:'SNACKBAR',payload:{type:'error',message:error?.response?.data?.message,status:true}})
     })
             }
             else {
@@ -86,7 +86,7 @@ const createcart=async(newstate)=>{
     })
     .catch((error)=>{
         UIdispatch({type:'LOADING',payload:false})
-        UIdispatch({type:'SNACKBAR',payload:{type:'error',message:error.message,state:true}})
+        UIdispatch({type:'SNACKBAR',payload:{type:'error',message:error?.message,state:true}})
     }
     )
     }

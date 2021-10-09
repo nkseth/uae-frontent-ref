@@ -164,11 +164,7 @@ export const subHeadCells=[
       label: 'subStatus',
       doSorting:false,
     },
-    {
-      id: 'action',
-      label: 'action',
-      doSorting:false,
-    },
+  
    
 ];
 export const companyRows=[

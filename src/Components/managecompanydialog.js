@@ -78,7 +78,6 @@ const {gettoken}=React.useContext(AuthContext)
 const {UIdispatch}=React.useContext(UIContext)
 const [activeaddons,setactiveaddons]=useState([])
 const [activeplan,setactiveplan]=useState([])
-const [compantdetails,setcomnpanydetails]=useState({})
 const [cstatus,setcstatus]=useState({})
 const [userdata,setuserdata]=useState({
     CompanyEmail:"",
@@ -380,7 +379,7 @@ const classes=useStyles()
             <label>Setup date</label>
             </Box>
             <TextField id="outlined-basic"  onChange={(e)=>onchangehandler(e,"setupDate")} type="date" name="steupDate" value={userdata.setupDate} style={{marginTop:'10px'}} fullWidth />
-            <Switch checked={cstatus} onchnage={()=>{setcstatus(!cstatus)}}/>
+            <Switch checked={cstatus} onChange={()=>{setcstatus(!cstatus)}}/>
                 <Button variant="contained" style={{marginTop:'20px',textTransform:'capitalize'}} type='submit' color="primary"
                 
                 >Update Company Details</Button>

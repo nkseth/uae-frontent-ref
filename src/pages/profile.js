@@ -38,7 +38,7 @@ const Profile=()=>{
            
            }).catch((err)=>{console.log(err)
                UIdispatch({type:'LOADING',payload:false})
-               UIdispatch({type:'SNACKBAR',payload:{type:'error',message:err.response.data.message,status:true}})
+               UIdispatch({type:'SNACKBAR',payload:{type:'error',message:err?.response?.data?.message,status:true}})
            })
        }
    callplan()
@@ -69,7 +69,7 @@ const Profile=()=>{
             setuserdata({email:res1.data.email,firstname:res1.data.firstname,lastname:res1.data.lastname,username:res1.data.username})
          }).catch((err)=>{console.log(err)
                UIdispatch({type:'LOADING',payload:false})
-               UIdispatch({type:'SNACKBAR',payload:{type:'error',message:err.response.data.message,status:true}})
+               UIdispatch({type:'SNACKBAR',payload:{type:'error',message:err?.response?.data?.message,status:true}})
            })
        }
    callplan()

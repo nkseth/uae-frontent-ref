@@ -88,9 +88,9 @@ textDecoration: 'none',
               <CardMembershipIcon/>
                Subscriptions
               </NavLink>
-              <NavLink  style={linkstyle}  color="inherit" to="/paymentMethod">
+              {/* <NavLink  style={linkstyle}  color="inherit" to="/paymentMethod">
               <PaymentIcon/> Payment Method
-              </NavLink>
+              </NavLink> */}
               <Button   style={{marginTop:'10px'}} onClick={Logoutclick}>
                Logout
               </Button>

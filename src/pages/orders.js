@@ -20,44 +20,54 @@ const {gettoken}=useContext(AuthContext)
         const fire= async()=>{
             
              gettoken().then(async(token)=>{
-                await axios({
+         await axios({
                     method:'GET',
                    url:'/orders',
                    headers:{
                           'Authorization':`Bearer ${token}`,
                           'Content-Type':"application/json"
-                      }}).then((res)=>{
-                          
-                        const final=[]
-                       let options = { year: 'numeric', month: 'long', day: 'numeric' };
-                        let ff
-                      res.data.map((item,index)=>{
-                           ff={
+                      }}).then(
+                          (res)=>{
+                        console.log("d€sdsad€sadaas€sd€ff",res.data)
+                        let options = { year: 'numeric', month: 'long', day: 'numeric' };
+                        let final=[]
+                        res.data.map((item,index)=>{
+                                console.log(index,item)
+                                 final=[{
                                    ID:index,
-                                   orderNumber:item.id,
-                               orderDate: new Date(item.createdAt).toLocaleDateString("en-US",options),
-                               orderCompany:item.company.CompanyName,
-                               orderAmount:`AED ${item.total}`,
-                               orderStatus:item.status?'completed':'pending',
-                                orderInvoice: <InvoiceDialogs id={item.id}/>,
-                               }
-                               console.log(ff)
-                       final.push(ff)
-                       
-                           })
-                       setfinalres(final)
+                                   orderNumber:item?.id,
+                                    orderDate: new Date(item.createdAt).toLocaleDateString("en-US",options),
+                                    orderCompany:item?.company?.CompanyName,
+                                    orderAmount:`AED ${item?.total}`,
+                                    orderStatus:item?.status?'completed':'pending',
+                                    orderInvoice: <InvoiceDialogs id={item?.id}/>,
+                               },...final]
+
+
+                     
+                    })
+                         
+                 setfinalres(final)
+
+
                     UIdispatch({type:'LOADING',payload:false})
-                   
-                  })
+                })
                   .catch((error)=>{
                       UIdispatch({type:'LOADING',payload:false})
                       UIdispatch({type:'SNACKBAR',payload:{type:'error',message:error.message,state:true}})
                   }
                   )
                })
-            }     
+            }
+        
+            
         fire()
+
+
         },[] )
+
+
+
     return (
         <Box>
             <Loder/>
@@ -67,6 +77,7 @@ const {gettoken}=useContext(AuthContext)
             </Box>
             <Box p={4}>
                 <Box style={{boxShadow:'0 0 5px gray'}}>
+                  
             <Table rows={finalres} headCells={orderHeadCells}/>
             </Box>
             </Box>

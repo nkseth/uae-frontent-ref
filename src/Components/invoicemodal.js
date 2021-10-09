@@ -74,12 +74,13 @@ BootstrapDialogTitle.propTypes = {
 
 const  InvoiceDialogs=(props) =>{
   const [open, setOpen] = React.useState(false);
-const [productalreadypresent,setproductalreadypresent]=React.useState(false)
-const {state,dispatch,cartid,updatecart,createcart}=React.useContext(CartContext)
-const {currentUser,gettoken}=React.useContext(AuthContext)
+
+
+const {gettoken}=React.useContext(AuthContext)
 const {UIdispatch}=React.useContext(UIContext)
 const [total,settotal]=React.useState(0)
 const [finalres,setfinalres]=React.useState([])
+const [res,setres]=React.useState("")
 
 
 const handleClickOpen = () => {
@@ -107,7 +108,10 @@ const handleClickOpen = () => {
                       'Authorization':`Bearer ${token}`,
                       'Content-Type':"application/json"
                   }}).then((res)=>{
-                      
+                     
+                      let papi= new Date(res?.data?.createdAt).toLocaleDateString('en-US');
+                    console.log(papi)
+                    setres(papi)
                     const final=[]
                     
             const  item=res.data
@@ -161,6 +165,13 @@ const classes=useStyles()
                 justifyContent='center' alignItems='center'
                 >
                 <Typography variant="subtitle2" color='primary'>Order Id:{props.id}</Typography>
+
+                </Grid>
+                
+                <Grid item container sm={12}
+                justifyContent='center' alignItems='center'
+                >
+                <Typography variant="subtitle2" color='primary'>Order Date:{res}</Typography>
 
                 </Grid>
                 <Grid item container sm={12}

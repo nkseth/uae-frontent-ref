@@ -71,7 +71,7 @@ const classes=useStyles()
             
             }).catch((err)=>{console.log(err)
                 UIdispatch({type:'LOADING',payload:false})
-                UIdispatch({type:'SNACKBAR',payload:{type:'error',message:err?.response.data.message,status:true}})
+                UIdispatch({type:'SNACKBAR',payload:{type:'error',message:err?.response?.data?.message,status:true}})
             })
         }
     callplan()
