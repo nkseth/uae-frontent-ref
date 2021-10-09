@@ -3,6 +3,8 @@ import React,{useContext, useEffect,useState} from "react"
 import { Magic } from "magic-sdk";
 import { UIContext } from "./Context/UIcontextapi";
 import {withRouter} from 'react-router'
+import { OAuthExtension } from '@magic-ext/oauth';
+
 export const AuthContext= React.createContext();
 
 const AuthProvider =({children,history})=>{
@@ -10,6 +12,10 @@ const AuthProvider =({children,history})=>{
 const [currentUser,setCurrentUser]= useState(null);
 console.log()
 const magic= new Magic(process.env.REACT_APP_MAGIC_PUBLIC_KEY)
+const magicoauth= new Magic(process.env.REACT_APP_MAGIC_PUBLIC_KEY,{
+    extensions: [new OAuthExtension()]})
+
+
 
 const checkuser= async()=>{
     UIdispatch({type:'LOADING',payload:true})
@@ -42,7 +48,7 @@ const checkuser= async()=>{
 const onlogin= async(email)=>{
      
     await magic.auth.loginWithMagicLink({email}).then((res)=>{
-
+        console.log(res)
      console.log("adjasdjadjadkasjdkajda",res)
     if(res)
      history.push('/mainpage')
@@ -54,6 +60,29 @@ const onlogin= async(email)=>{
  
     
  }
+
+ const Oauthlogin=async(provider)=>{
+
+    await magicoauth.oauth.loginWithRedirect({
+        provider: provider,
+        redirectURI: `https://${process.env.REACT_APP_DOMAIN_NAME}/login`,
+        scope: ['user:email'] /* optional */,
+      });
+       await magicoauth.oauth.getRedirectResult().then((res)=>{
+
+        console.log(res)
+        console.log("adjasdjadjadkasjdkajda",res)
+       if(res)
+        history.push('/mainpage')
+   
+       })
+       .catch((err)=>{
+           console.log(err)
+       })
+      
+      
+ 
+    }
 
 const gettoken=async()=>{
     let resi=""
@@ -79,7 +108,7 @@ useEffect(()=>{
 
 return(
     <AuthContext.Provider
-    value={{currentUser,checkuser,gettoken,onlogin}}
+    value={{currentUser,checkuser,gettoken,onlogin,Oauthlogin}}
 >
     {children}
 </AuthContext.Provider>

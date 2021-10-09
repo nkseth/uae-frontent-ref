@@ -7,7 +7,7 @@ import logo from '../asserts/logo.png'
 const Thankyou=({history,type})=>{
     useEffect(()=>{
         setTimeout(() => {
-            history.push('/mainpage')
+            history.push('/')
         }, 3000);
     },[])
 

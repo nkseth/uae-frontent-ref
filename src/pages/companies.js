@@ -75,7 +75,7 @@ const {gettoken}=useContext(AuthContext)
             <Loder/>
             <Header/>
             <Box ml={2}>
-            <Breadcrumb crum={[{label:"Home",url:"/"},{label:"Market Place",url:"/mainpage"},{label:"Orders",url:"/orders"}]}/>
+            <Breadcrumb crum={[{label:"Home",url:"/"},{label:"Market Place",url:"/mainpage"},{label:"Companies",url:"/companies"}]}/>
             </Box>
             <Box p={4}>
                 <Box style={{boxShadow:'0 0 5px gray'}}>
