@@ -13,26 +13,29 @@ const magic= new Magic(process.env.REACT_APP_MAGIC_PUBLIC_KEY)
 
 const checkuser= async()=>{
     UIdispatch({type:'LOADING',payload:true})
-   await magic.user.isLoggedIn().then(async(isLoggedIn)=>{
-          
-            if(isLoggedIn){
+ return  await magic.user.isLoggedIn().then(async(isLoggedIn)=>{
+    
+    if(isLoggedIn){
 
-                 await magic.user.getMetadata().then((userdata)=>{
+               return  await magic.user.getMetadata().then((userdata)=>{
                     setCurrentUser(userdata)
+                   
                     UIdispatch({type:'LOADING',payload:false})
+                    return true
                  })
              }else {
                
-                setCurrentUser(null)}
+                setCurrentUser(null)
+            return false
+            }
+
         }).catch((error)=>{
             UIdispatch({type:'LOADING',payload:false})
             UIdispatch({type:'SNACKBAR',payload:{type:'error',message:error.message}})
         })
 
-       if(currentUser)
-           return true
+
        
-        return false
       
 }
 

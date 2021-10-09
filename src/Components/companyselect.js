@@ -12,7 +12,7 @@ useEffect(() => {
   
 const newdata=[]
    cstate.map((item,index)=>{
-          return  newdata.push({label:item.CompanyName,value:item.id})
+          if(item.status) newdata.push({label:item.CompanyName,value:item.id})
         })
         setcompany(newdata)
   }, [cstate])

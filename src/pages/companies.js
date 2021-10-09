@@ -8,7 +8,7 @@ import {AuthContext} from '../Auth'
 import {UIContext} from '../Context/UIcontextapi'
 import axios from '../axios'
 import Loder from '../Components/loading'
-import InvoiceDialogs from '../Components/invoicemodal'
+import CompanyDialogs from '../Components/managecompanydialog'
 
 function Orders() {
 
@@ -27,7 +27,7 @@ const {gettoken}=useContext(AuthContext)
                           'Authorization':`Bearer ${token}`,
                           'Content-Type':"application/json"
                       }}).then((res)=>{
-                          
+                          console.log(res)
                         const final=[]
                      //  let options = { year: 'numeric', month: 'long', day: 'numeric' };
                         let ff
@@ -35,14 +35,23 @@ const {gettoken}=useContext(AuthContext)
                            ff={
                                ID:index,
                             companyId:item.id,
-                            companyName:'lpha Trading Limited',
-                            subsctiption:'impleAccounts Business',
-                            domain:'alph',
-                            adminemail:'jphn@gmal.com',
-                            setupDate:' 01-01-2021',
-                            companyStatus:'ctive',
-                            companyurl:'https://delta29.app.simpleaccounts.io',
-                            action:<a href={`/manageCompany`}>Manage</a>,
+                            companyName:item.CompanyName,
+                           
+                            domain:item.domainName,
+                            adminemail:item.CompanyEmail,
+                            setupDate:item.setupDate,
+                            companyStatus:item.status?"ACTIVE":"INACTIVE",
+                            companyurl:item.companyURL,
+
+                            
+                            action:<CompanyDialogs href={`/manageCompany`} id={item.id} 
+                            title={item.CompanyName}
+                             domain={item.domainName}
+                             email={item.CompanyEmail}
+                             setupdate={item.setupDate}
+                             status={item.status}
+                             url={item.companyURL}
+                             />
                                }
                                console.log(ff)
                        final.push(ff)

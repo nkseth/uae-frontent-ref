@@ -240,11 +240,7 @@ export const companyHeadCells=[
       label: 'Company Name',
       doSorting:false,
     },
-    {
-      id: 'subsctiption',
-      label: 'subscription',
-      doSorting:false,
-    },
+  
     {
       id: 'domain',
       label: 'domain',

@@ -27,6 +27,7 @@ import Profile from './pages/profile';
 import Subscription from './pages/subcriptions';
 import Companies from './pages/companies';
 import Viewinvoice from './pages/viewinvoice';
+import Thankyou from './pages/thankyou';
 
 const App =()=> {
   const defaultTheme = createTheme();
@@ -70,6 +71,7 @@ return(
 <PrivateRoute path="/subscriptions" exact component={Subscription}/>
 <PrivateRoute path="/Companies" exact component={Companies}/>
 <PrivateRoute path="/invoice/:id" exact component={Viewinvoice}/>
+<Route path="/thankyou" exact component={Thankyou}/>
 <Route path="/Login" exact component={LoginPage}/>
 <Route path="/Signup" exact component={SigninupPage}/>
 <Route path="/" exact component={HomePage}/>

@@ -34,7 +34,7 @@ const Checkout=({history})=>{
 const  {gettoken}=useContext(AuthContext)
 const [comp,setcomp]=useState("")
 const [total,settotal]=useState(0)
-const {state}=useContext(CartContext)
+const {state,Emptycart}=useContext(CartContext)
 
   const comnfrmcheckout=async()=>{
 
@@ -51,8 +51,10 @@ const {state}=useContext(CartContext)
          data:JSON.stringify({cart:state,companyid:comp})
         }).then((res)=>{
 
-        console.log('res',res.statusCode)
+       
         UIdispatch({type:"LOADING",payload:false})
+Emptycart()
+        history.push('/thankyou')
            
     })
     .catch((error)=>
@@ -177,7 +179,12 @@ setcomp(e.target.value)
                     Go Back Marketplace
                 </Button>
                <Button   variant="container"
-               onClick={comnfrmcheckout}
+               onClick={
+                ()=>{
+                    if(comp==="")  UIdispatch({type:'SNACKBAR',payload:{type:'error',message:"please select company to continue",status:true}})
+                else   comnfrmcheckout()
+                }   
+               }
                style={{background:"#28d9ad",
                textTransform:'capitalize',color:'white' ,margin:'10px'}}
                >

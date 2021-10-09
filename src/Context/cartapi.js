@@ -136,6 +136,36 @@ const updatecart=async(newstate)=>{
    
 }
 
+const Emptycart=async()=>{
+    dispatch({type:"ADDDATA",payload:[]})
+    if(currentUser){
+ UIdispatch({type:'LOADING',payload:true})
+  
+    const token=await gettoken()
+   
+   await axiosInstance({
+    method:'PUT',
+    url:`/usercarts/${cartid}`,
+    headers:{
+           'Authorization':`Bearer ${token}`,
+           'Content-Type':"application/json"
+       },
+     data:JSON.stringify({plans:null,addons:null})
+    
+   }).then((res)=>{
+    UIdispatch({type:'LOADING',payload:false})
+       
+  
+})
+.catch((error)=>{
+    console.error(error)
+    UIdispatch({type:'SNACKBAR',payload:{type:'error',message:error.message,state:true,}})
+    UIdispatch({type:'LOADING',payload:false})
+})
+    }
+   
+}
+
 useEffect(()=>{
     if(currentUser) callcarttoken()
     
@@ -144,7 +174,7 @@ useEffect(()=>{
 
         return (
         <CartContext.Provider
-            value={{ state, dispatch,callcarttoken,updatecart,createcart ,cartid}}>
+            value={{ state, dispatch,callcarttoken,updatecart,createcart ,cartid,Emptycart}}>
             {children}
         </CartContext.Provider>
     )

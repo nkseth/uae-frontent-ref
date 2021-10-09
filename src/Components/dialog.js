@@ -71,7 +71,15 @@ const {UIdispatch}=React.useContext(UIContext)
   };
   
   const onadditem=(item)=>{
-    const newstate=[...state,item]
+    const newstatek=[...state]
+    let flag=0
+    newstatek.map((itemk)=>{
+        if(item.id===itemk.id) 
+        flag=1
+   return flag
+      })
+    if(flag===0){
+      const newstate=[...state,item]
       dispatch({type:"ADDITEM",payload:item})
       if(cartid){
           updatecart(newstate)
@@ -79,7 +87,13 @@ const {UIdispatch}=React.useContext(UIContext)
           createcart(newstate)
       }
     handleClose()
+    } else{
+      UIdispatch({type:'SNACKBAR',payload:{type:'error',message:"you already have this item in the cart",state:true}})
+    }
+   
   }
+
+
   React.useEffect(()=>{
     const allitemid=[]
     state.map((item)=>{
@@ -133,11 +147,10 @@ const {UIdispatch}=React.useContext(UIContext)
                 </Button>
                <Button   variant="container"
                onClick={()=>{
-                if(state.length>0)   
+                onadditem(props.data)
+  
                 props.history.push("/Checkout")
-                else {
-                    UIdispatch({type:"SNACKBAR",payload:{type:"error",message:'Your Cart is Empty',status:true}})
-                }
+               
             }}
                style={{background:"#28d9ad",
                textTransform:'capitalize',color:'white' ,margin:'10px'}}

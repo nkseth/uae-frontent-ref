@@ -63,7 +63,7 @@ const createcompany=async(newstate)=>{
        }  ).then((res)=>{
         UIdispatch({type:'LOADING',payload:false})
         cdispatch({type:"ADDITEM",payload:res.data})
-        history.push('/checkout')
+        history.goBack()
     console.log("thisjhsss",res)
  
 })

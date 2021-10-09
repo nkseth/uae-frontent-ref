@@ -1,12 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React,{useContext, useEffect} from 'react'
+import React,{useContext} from 'react'
 import { createStyles, makeStyles } from '@mui/styles'
-import {  Badge, Box, Button ,Typography} from '@mui/material'
+import {  Badge, Box, Button } from '@mui/material'
 import logo from '../asserts/logo.png'
 import Popper from './popper'
 import { AuthContext } from '../Auth'
 import { withRouter } from 'react-router'
-import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { CartContext } from '../Context/cartapi'
 import {UIContext} from '../Context/UIcontextapi'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
