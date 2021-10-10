@@ -87,7 +87,7 @@ console.log(currentUser)
             <Header/> 
             <Loder/>
             <Box ml={3} mt={3}>
-            <Breadcrumb crum={[{label:"Home",url:"/"},{label:"Market Place",url:"/mainpage"},{label:"Profile",url:"/profile"}]}/>
+            <Breadcrumb crum={[{label:"Home",url:"/"},{label:"Market Place",url:"/marketplace"},{label:"Profile",url:"/profile"}]}/>
             </Box>
             <Container fluid style={{minHeight:'70vh',boxShadow:'0 0 30px lightBlue',marginTop:'20px',display:'flex',flexDirection:'column',justifyContent:'space-around',alignItems:'center',maxWidth:'500px'}} >
             <Typography variant="h5" color="primary">My Profile</Typography>

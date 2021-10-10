@@ -51,7 +51,7 @@ const onlogin= async(email)=>{
         console.log(res)
      console.log("adjasdjadjadkasjdkajda",res)
     if(res)
-     history.push('/mainpage')
+     history.push('/marketplace')
 
     })
     .catch((err)=>{
@@ -73,7 +73,7 @@ const onlogin= async(email)=>{
         console.log(res)
         console.log("adjasdjadjadkasjdkajda",res)
        if(res)
-        history.push('/mainpage')
+        history.push('/marketplace')
    
        })
        .catch((err)=>{

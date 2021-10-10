@@ -173,7 +173,7 @@ setcomp(e.target.value)
              style={{textTransform:'capitalize',
              background:'#28d9a'  ,margin:'10px'          
              }}
-             onClick={()=>{history.push("/mainpage")}}
+             onClick={()=>{history.push("/marketplace")}}
              >
                     <AddShoppingCartIcon/>
                     Go Back Marketplace

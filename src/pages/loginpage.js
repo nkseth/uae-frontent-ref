@@ -29,7 +29,7 @@ const LoginPage=({history,location})=>{
         UIdispatch({type:'LOADING',payload:false})
       }
      if(currentUser){
-      history.push('/mainpage')
+      history.push('/marketplace')
      } 
     }
      

@@ -92,7 +92,7 @@ function Subscription() {
         <Box>
             <Header/>
             <Box ml={2}>
-            <Breadcrumb crum={[{label:"Home",url:"/"},{label:"Market Place",url:"/mainpage"},{label:"Subcriptions",url:"/subcriptions"}]}/>
+            <Breadcrumb crum={[{label:"Home",url:"/"},{label:"Market Place",url:"/marketplace"},{label:"Subcriptions",url:"/subcriptions"}]}/>
             </Box>
             <Box p={4}>
                 <Box style={{boxShadow:'0 0 5px gray'}}>

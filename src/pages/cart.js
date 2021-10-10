@@ -66,7 +66,7 @@ const CartPage=({history})=>{
             <Header/>
             <Loader/>
             <Box ml={3} mt={3}>
-            <Breadcrumb crum={[{label:"Home",url:"/"},{label:"Market Place",url:"/mainpage"},{label:"Your Cart",url:"/cart"}]}/>
+            <Breadcrumb crum={[{label:"Home",url:"/"},{label:"Market Place",url:"/marketplace"},{label:"Your Cart",url:"/cart"}]}/>
             </Box>
             
             <Container  fluid style={{padding:'20px',boxShadow:'0 0 10px gray',marginTop:'20px',maxWidth:'900px',}}>
@@ -156,7 +156,7 @@ const CartPage=({history})=>{
              style={{textTransform:'capitalize',
              background:'#28d9a'  ,margin:'10px'          
              }}
-             onClick={()=>{history.push("/mainpage")}}
+             onClick={()=>{history.push("/marketplace")}}
              >
                     <AddShoppingCartIcon/>
                     Go Back Marketplace

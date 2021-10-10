@@ -62,7 +62,7 @@ return(
    <CompanyContextProvider>
      <Snackbars/>
 <Switch>
-<PrivateRoute path="/mainpage" exact component={MainPage}/>
+<PrivateRoute path="/marketplace" exact component={MainPage}/>
 <Route path="/cart" exact component={CartPage}/>
 <PrivateRoute path="/Orders" exact component={Orders}/>
 <PrivateRoute path="/Checkout" exact component={Checkout}/>
