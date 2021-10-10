@@ -32,11 +32,11 @@ const Profile=()=>{
               },
            }).then(async(res1)=>{
             UIdispatch({type:'LOADING',payload:false})
-            console.log(res1)
+            (res1)
             setuserdata({email:res1.data.email,firstname:res1.data.firstname,lastname:res1.data.lastname,username:res1.data.username,id:res1.data.id})
          
            
-           }).catch((err)=>{console.log(err)
+           }).catch((err)=>{
                UIdispatch({type:'LOADING',payload:false})
                UIdispatch({type:'SNACKBAR',payload:{type:'error',message:err?.response?.data?.message,status:true}})
            })
@@ -65,9 +65,9 @@ const Profile=()=>{
               data:{firstname:Firstname.value,lastname:LastName.value,username:username.value}
            }).then(async(res1)=>{
             UIdispatch({type:'LOADING',payload:false})
-            console.log(res1)
+            (res1)
             setuserdata({email:res1.data.email,firstname:res1.data.firstname,lastname:res1.data.lastname,username:res1.data.username})
-         }).catch((err)=>{console.log(err)
+         }).catch((err)=>{
                UIdispatch({type:'LOADING',payload:false})
                UIdispatch({type:'SNACKBAR',payload:{type:'error',message:err?.response?.data?.message,status:true}})
            })
@@ -81,7 +81,7 @@ setuserdata(olds)
 
 }
 
-console.log(currentUser)
+
     return(
         <div>
             <Header/> 

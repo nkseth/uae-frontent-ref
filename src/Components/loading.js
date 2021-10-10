@@ -6,7 +6,7 @@ import {UIContext} from '../Context/UIcontextapi'
 import { Typography } from '@mui/material';
 
 export default function Loder() {
-    const {UIstate,UIdispatch}=useContext(UIContext)
+    const {UIstate}=useContext(UIContext)
 
 
 

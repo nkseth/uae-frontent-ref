@@ -10,7 +10,7 @@ export const AuthContext= React.createContext();
 const AuthProvider =({children,history})=>{
     const {UIdispatch}=useContext(UIContext)
 const [currentUser,setCurrentUser]= useState(null);
-console.log()
+
 const magic= new Magic(process.env.REACT_APP_MAGIC_PUBLIC_KEY)
 const magicoauth= new Magic(process.env.REACT_APP_MAGIC_PUBLIC_KEY,{
     extensions: [new OAuthExtension()]})
@@ -48,14 +48,13 @@ const checkuser= async()=>{
 const onlogin= async(email)=>{
      
     await magic.auth.loginWithMagicLink({email}).then((res)=>{
-        console.log(res)
-     console.log("adjasdjadjadkasjdkajda",res)
+   
     if(res)
      history.push('/marketplace')
 
     })
     .catch((err)=>{
-        console.log(err)
+      
     })
  
     
@@ -70,14 +69,13 @@ const onlogin= async(email)=>{
       });
        await magicoauth.oauth.getRedirectResult().then((res)=>{
 
-        console.log(res)
-        console.log("adjasdjadjadkasjdkajda",res)
+      
        if(res)
         history.push('/marketplace')
    
        })
        .catch((err)=>{
-           console.log(err)
+        
        })
       
       

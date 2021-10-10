@@ -18,10 +18,10 @@ const LoginPage=({history,location})=>{
     const fire=async()=>{
       UIdispatch({type:'LOADING',payload:true})
       const user= await checkuser() 
-      console.log("user check",user)
+      ("user check",user)
       if(user){
         UIdispatch({type:'LOADING',payload:false})
-        console.log(history)
+        (history)
         history.goBack()
 
       }

@@ -27,7 +27,7 @@ function Subscription() {
                               'Content-Type':"application/json"
                           }}).then(async(resa)=>{
                             setactiveaddons(resa.data)
-                            console.log("sdfsdfds",resa)
+                            ("sdfsdfds",resa)
                             await axiosInstance({
                                 method:'GET',
                                url:`/activeplans`,
@@ -35,7 +35,7 @@ function Subscription() {
                                       'Authorization':`Bearer ${token}`,
                                       'Content-Type':"application/json"
                                   }}).then(async(resffff)=>{
-                                    console.log("asdsadsadsad",resffff) 
+                                    
                                       setactiveplan(resffff?.data)
                                      
                                       UIdispatch({type:'LOADING',payload:false})
@@ -55,7 +55,7 @@ function Subscription() {
 
    useEffect(() => {
 
-    console.log(activeaddon,activeplan)
+ 
        let paa=[]
        activeplan.map((item,index)=>{
         let p={
@@ -85,7 +85,7 @@ function Subscription() {
     paa.push(p)
        })
       
-       console.log(paa)
+       (paa)
     setfinalaary(paa)
 },[activeaddon,activeplan])
     return (

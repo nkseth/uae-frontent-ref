@@ -4,7 +4,7 @@ export const initialState = []
 export const reducer = (state, action) => {
     switch (action.type) {
         case 'ADDDATA':
-            console.log(state)
+         
             return action.payload
             case 'ADDITEM':
                 

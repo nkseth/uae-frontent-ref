@@ -16,7 +16,7 @@ useEffect(() => {
         method:'GET',
        url:'/prospects/Count',
    }  ).then(async(count1)=>{
-console.log("count",count1)
+
            UIdispatch({type:'LOADING',payload:false})
        setcount(count1?.data)
    })
@@ -27,7 +27,7 @@ fire()
     const submithandler=async(e)=>{
         e.preventDefault()
         const {firstname,lastname,email}=e.target.elements
-    console.log(firstname.value,lastname.value,email.value)
+    (firstname.value,lastname.value,email.value)
         UIdispatch({type:'LOADING',payload:true})
          await axiosInstance({
          method:'POST',

@@ -27,7 +27,7 @@ const {gettoken}=useContext(AuthContext)
                           'Authorization':`Bearer ${token}`,
                           'Content-Type':"application/json"
                       }}).then((res)=>{
-                          console.log(res)
+                         
                         const final=[]
                      //  let options = { year: 'numeric', month: 'long', day: 'numeric' };
                         let ff
@@ -53,7 +53,7 @@ const {gettoken}=useContext(AuthContext)
                              url={item.companyURL}
                              />
                                }
-                               console.log(ff)
+                           
                        final.push(ff)
                        
                            })

@@ -28,11 +28,11 @@ const {gettoken}=useContext(AuthContext)
                           'Content-Type':"application/json"
                       }}).then(
                           (res)=>{
-                        console.log("d€sdsad€sadaas€sd€ff",res.data)
+                        
                         let options = { year: 'numeric', month: 'long', day: 'numeric' };
                         let final=[]
                         res.data.map((item,index)=>{
-                                console.log(index,item)
+                                
                                  final=[{
                                    ID:index,
                                    orderNumber:item?.id,

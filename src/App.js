@@ -50,7 +50,7 @@ const App =()=> {
   });
 return( 
    <ThemeProvider theme={defaultTheme}>
-     {console.log(defaultTheme)}
+  
      <UIContextProvider>
 
   

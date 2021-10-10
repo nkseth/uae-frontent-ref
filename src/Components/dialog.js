@@ -60,7 +60,7 @@ const  CustomizedDialogs=(props) =>{
   const [open, setOpen] = React.useState(false);
 const [productalreadypresent,setproductalreadypresent]=React.useState(false)
 const {state,dispatch,cartid,updatecart,createcart}=React.useContext(CartContext)
-const {currentUser}=React.useContext(AuthContext)
+
 const {UIdispatch}=React.useContext(UIContext)
   const handleClickOpen = () => {
     setOpen(true);

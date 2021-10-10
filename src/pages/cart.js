@@ -37,7 +37,7 @@ const CartPage=({history})=>{
     let neewstate
     const removeitem=(item)=>{
        neewstate= currentstate.filter((items)=>items.id!==item)
-        console.log("this is ",neewstate)
+   
         dispatch({type:'REMOVEITEM',payload:neewstate})
         if(currentUser){
          if(cartid){

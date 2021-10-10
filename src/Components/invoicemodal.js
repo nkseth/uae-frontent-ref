@@ -110,7 +110,7 @@ const handleClickOpen = () => {
                   }}).then((res)=>{
                      
                       let papi= new Date(res?.data?.createdAt).toLocaleDateString('en-US');
-                    console.log(papi)
+                  
                     setres(papi)
                     const final=[]
                     
@@ -119,7 +119,7 @@ const handleClickOpen = () => {
                     item.addons.map((itema)=>{
                         final.push(itema)
                     })  
-                    console.log(final)
+                  
                     setfinalres(final)
                    
                    settotal(item.total)

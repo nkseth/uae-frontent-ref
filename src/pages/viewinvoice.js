@@ -55,7 +55,7 @@ const Viewinvoice=({history,match})=>{
                     item.addons.map((itema)=>{
                         final.push(itema)
                     })  
-                    console.log(final)
+                    (final)
                     setfinalres(final)
                    
                    settotal(item.total)

@@ -236,7 +236,7 @@ export default function EnhancedTable({rows , headCells}) {
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [rn, setrn] = React.useState([]);
-  console.log("ytis form tabel",rows)
+
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');

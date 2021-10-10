@@ -30,7 +30,6 @@ export const CompanyContext = createContext()
                     }
                 }).then((res)=>{
                     UIdispatch({type:'LOADING',payload:false})
-                    console.log("dispatch is for comapny done",res.data)
                   
                 cdispatch({type:"ADDDATA",payload:res.data?res.data:[]})
                 }).catch((error)=>{
@@ -45,8 +44,7 @@ export const CompanyContext = createContext()
 
 
 const createcompany=async(newstate)=>{
-    console.log(cstate)
-    console.log("create")
+  
     UIdispatch({type:'LOADING',payload:true})
     const token=await gettoken()
     
@@ -64,7 +62,7 @@ const createcompany=async(newstate)=>{
         UIdispatch({type:'LOADING',payload:false})
         cdispatch({type:"ADDITEM",payload:res.data})
         history.goBack()
-    console.log("thisjhsss",res)
+
  
 })
 .catch((error)=>{

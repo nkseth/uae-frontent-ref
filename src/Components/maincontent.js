@@ -69,7 +69,7 @@ const classes=useStyles()
                     UIdispatch({type:'LOADING',payload:false})
                 })
             
-            }).catch((err)=>{console.log(err)
+            }).catch((err)=>{
                 UIdispatch({type:'LOADING',payload:false})
                 UIdispatch({type:'SNACKBAR',payload:{type:'error',message:err?.response?.data?.message,status:true}})
             })
@@ -124,14 +124,14 @@ useEffect(()=>{
 
 useEffect(()=>{
     searchfilter()
-console.log("thidasdasdasdasd")
+
 },[searchq])
 
 const searchfilter=()=>{
   const returnfinal=filtercreator()
    const pl=[...returnfinal]
 
-   console.log("this sh",pl)
+  
     if(searchq!==""){ 
     const searchResults = pl.filter(item => {
 
@@ -167,8 +167,7 @@ const filterclicked=(e,type)=>{
       
   }
 }
-const colors=['#83d17f','#ffc300','#2064d8','#d4afff']
-//sdsd
+
 
 
     return(

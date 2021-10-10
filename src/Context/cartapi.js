@@ -27,14 +27,14 @@ export const CartContext = createContext()
                     }
                 }).then((res)=>{
 
-                    console.log("dispatch is done",res.data)
+                   
                     setcartid(res.data[0]?.id)
                 dispatch({type:"ADDDATA",
                 payload:res.data[0]?.plans || res.data[0]?.addons
                 ?[...res.data[0].plans,...res.data[0].addons]:[]})
                 UIdispatch({type:'LOADING',payload:false})
             })
-     .catch((error)=>{console.log(error)
+     .catch((error)=>{
         UIdispatch({type:'LOADING',payload:false})
         UIdispatch({type:'SNACKBAR',payload:{type:'error',message:error?.response?.data?.message,status:true}})
     })
@@ -51,8 +51,7 @@ export const CartContext = createContext()
 
 const createcart=async(newstate)=>{
     if(currentUser){
-        console.log(state)
-        console.log("create")
+      
         const token=gettoken()
         UIdispatch({type:'LOADING',payload:true})
         const plaid=[]
@@ -96,7 +95,7 @@ const createcart=async(newstate)=>{
 const updatecart=async(newstate)=>{
     if(currentUser){
  UIdispatch({type:'LOADING',payload:true})
-    console.log("thidnbdnd",newstate)
+  
     
     const plaid=[]
     const addonid=[]

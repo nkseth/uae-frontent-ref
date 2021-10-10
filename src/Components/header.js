@@ -38,7 +38,7 @@ const Header=({history})=>{
 const classes=useStyles()
 const {currentUser}=useContext(AuthContext)
  const {state}=useContext(CartContext)
-const {UIdispatch}=useContext(UIContext)
+
  
 
 

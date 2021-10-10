@@ -11,7 +11,6 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import {Box, Container, Grid, Switch, TextField} from '@mui/material'
-import { CartContext } from '../Context/cartapi';
 import { withRouter } from 'react-router';
 import { AuthContext } from '../Auth';
 import { UIContext } from '../Context/UIcontextapi';
@@ -90,14 +89,7 @@ const [userdata,setuserdata]=useState({
 
 
 useEffect(() => {
-console.log({
-    CompanyEmail:props.email,
-    CompanyName: props.title,
-    companyURL: props.url,
-    domainName: props.domain,
-    setupDate:props.setupdate,
-   
-   })
+
    setuserdata({
     CompanyEmail:props.email,
     CompanyName: props.title,
@@ -139,9 +131,9 @@ const submithandler=(e)=>{
          UIdispatch({type:'LOADING',payload:false})
          UIdispatch({type:'SNACKBAR',payload:{type:'success',message:"company updated Successfully",status:true}})
  props.history.push('/')
-         console.log(res1)
+      
         
-      }).catch((err)=>{console.log(err)
+      }).catch((err)=>{
             UIdispatch({type:'LOADING',payload:false})
             UIdispatch({type:'SNACKBAR',payload:{type:'error',message:err?.message,status:true}})
         })
@@ -182,7 +174,7 @@ const handleClickOpen = () => {
                               'Content-Type':"application/json"
                           }}).then(async(resa)=>{
                             setactiveaddons(resa.data)
-                            console.log("sdfsdfds",resa)
+                          
                             await axios({
                                 method:'GET',
                                url:`/activeplanscompany/${props.id}`,
@@ -190,9 +182,9 @@ const handleClickOpen = () => {
                                       'Authorization':`Bearer ${token}`,
                                       'Content-Type':"application/json"
                                   }}).then(async(resffff)=>{
-                                    console.log("asdsadsadsad",resffff) 
+                                
                                       setactiveplan(resffff?.data)
-                                      console.log(resffff?.data[0]) 
+                                     
                                       UIdispatch({type:'LOADING',payload:false})
                                       setOpen(true);
                                    

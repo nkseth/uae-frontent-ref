@@ -60,7 +60,7 @@ Emptycart()
     .catch((error)=>
     {
         
-        console.log("err",error.response)
+      
  
         UIdispatch({type:'SNACKBAR',payload:{type:'error',message:error?.response?.data?.message,status:true}})
         UIdispatch({type:"LOADING",payload:false})
@@ -69,7 +69,7 @@ Emptycart()
     }
   
     onchange=(e)=>{
-        console.log(e.target.value)
+      
 setcomp(e.target.value)
     }
 
