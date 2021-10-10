@@ -60,7 +60,7 @@ fire()
            
             <form onSubmit={submithandler} style={{display:'flex',flexDirection:'column',width:'100%',justifyContent:'space-around',alignItems:'center'}}>  
             <TextField id="outlined-basic" required style={{marginTop:'10px'}} name="firstname" label="First Name" variant="outlined" fullWidth />
-            <TextField id="outlined-basic"  required style={{marginTop:'10px'}} name="lastname" label="Last Email"  variant="outlined" fullWidth />
+            <TextField id="outlined-basic"  required style={{marginTop:'10px'}} name="lastname" label="Last Name"  variant="outlined" fullWidth />
             <TextField id="outlined-basic"  required style={{marginTop:'10px'}}  name="email" label="Email "  variant="outlined" fullWidth type="email"/>
             
                 <Button variant="contained" style={{marginTop:'20px',textTransform:'capitalize'}} type='submit' color="primary"
