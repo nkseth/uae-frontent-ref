@@ -86,7 +86,7 @@ setcomp(e.target.value)
             <Loder/>
             <Header/>
             <Box ml={3} mt={3}>
-            <Breadcrumb crum={[{label:"Home",url:"/"},{label:"Market Place",url:"/main"},{label:"Checkout",url:"/checkout"}]}/>
+            <Breadcrumb crum={[{label:"Home",url:"/"},{label:"Market Place",url:"/marketplace"},{label:"Checkout",url:"/checkout"}]}/>
          </Box>
            <Container fluid style={{padding:'20px',boxShadow:'0 0 10px gray',marginTop:'20px',maxWidth:'900px',}}>
            
